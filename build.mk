@@ -6,17 +6,13 @@
 VERSION := 3.1.0
 SDIST := dist/pynq-$(VERSION).tar.gz
 
-BITS := boards/Pynq-Z1/logictools/logictools.bit \
-	boards/Pynq-Z2/logictools/logictools.bit \
-	boards/Pynq-Z1/base/base.bit \
-	boards/Pynq-Z2/base/base.bit \
-	boards/ZCU104/base/base.bit 
+BITS :=
 
-LOGICTOOLS_BSP := pynq/lib/logictools/bsp_lcp_ar_mb/lscript.ld
-BASE_BSP := pynq/lib/rpi/bsp_iop_rpi/lscript.ld
+LOGICTOOLS_BSP :=
+BASE_BSP :=
 
 
-all: gitsubmodule $(BITS) $(BASE_BSP) $(LOGICTOOLS_BSP) $(SDIST)
+all: gitsubmodule $(SDIST)
 	echo "Build completed: $(SDIST)"
 
 gitsubmodule:
