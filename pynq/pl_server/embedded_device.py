@@ -685,7 +685,13 @@ class EmbeddedDevice(XrtDevice):
 
         self.set_axi_port_width(parser)
 
-        self._xrt_download(parser.xclbin_data)
+        try:
+            self._xrt_download(parser.xclbin_data)
+        except RuntimeError:
+            import warnings
+            warnings.warn("XRT xclbin load failed; FPGA bitstream was "
+                          "programmed via FPGA manager. XRT features "
+                          "(e.g. allocate with specific banks) may not work.")
         super().post_download(bitstream, parser, self.name)
 
     def get_bitfile_metadata(self, bitfile_name:str, partial:bool=False):
