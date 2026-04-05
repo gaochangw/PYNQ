@@ -306,7 +306,7 @@ $$(IMAGE_$1) : $$(ROOT_$1) $$(BOOT_FILES_$1)
 	# PLNX 2024.1 bug - wic call will error out due to issue seen in link below ... 
 	# https://discuss.pynq.io/t/error-then-building-pynq-for-microzed-board/7252/6
 	-cd $$(PL_PROJ_$1) && petalinux-package wic --images-dir "$$(STAGING_$1)" --bootfiles "$$(notdir $$(BOOT_FILES_$1))" -c $$< --outdir $$(IMAGE_ROOT) --wks $$(CURDIR)/boot/image.wks --extra-bootfiles "$$(EXTRA_BOOT_$1)/*:."
-	mv $$(PL_PROJ_$1)/build/wic/wic-tmp/image-*.direct $$@
+	mv $$(IMAGE_ROOT)/petalinux-sdimage.wic $$@
 
 
 
