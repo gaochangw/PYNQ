@@ -26,7 +26,7 @@ cd $HOME
 mkdir sigrok_build
 cd sigrok_build
 
-wget http://sigrok.org/download/source/libsigrok/${libsigrok}.tar.gz
+cp /sigrok-cache/${libsigrok}.tar.gz . 2>/dev/null || wget http://sigrok.org/download/source/libsigrok/${libsigrok}.tar.gz
 tar -xf ${libsigrok}.tar.gz
 cd ${libsigrok}
 ./configure --prefix=/opt/sigrok
@@ -34,7 +34,7 @@ make -j 4
 make install
 cd ..
 
-wget http://sigrok.org/download/source/libsigrokdecode/${libsigrokdecode}.tar.gz
+cp /sigrok-cache/${libsigrokdecode}.tar.gz . 2>/dev/null || wget http://sigrok.org/download/source/libsigrokdecode/${libsigrokdecode}.tar.gz
 tar -xf ${libsigrokdecode}.tar.gz
 cd ${libsigrokdecode}
 patch -p2 -i $patch_file
@@ -46,7 +46,7 @@ cd ..
 echo /opt/sigrok/lib >> /etc/ld.so.conf.d/sigrok.conf
 ldconfig
 
-wget http://sigrok.org/download/source/sigrok-cli/${sigrok_cli}.tar.gz
+cp /sigrok-cache/${sigrok_cli}.tar.gz . 2>/dev/null || wget http://sigrok.org/download/source/sigrok-cli/${sigrok_cli}.tar.gz
 tar -xf ${sigrok_cli}.tar.gz
 cd ${sigrok_cli}
 ./configure --prefix=/opt/sigrok
