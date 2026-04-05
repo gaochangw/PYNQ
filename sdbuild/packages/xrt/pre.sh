@@ -10,4 +10,5 @@ sudo cp -f $script_dir/xrt_setup.sh $target/etc/profile.d
 cd $BUILD_ROOT/${PYNQ_BOARD}/petalinux_project
 petalinux-build -c zocl
 sudo cp -rf $BUILD_ROOT/${PYNQ_BOARD}/petalinux_project/build/tmp/sysroots-components/*/zocl/usr $target
-sudo cp -rf $BUILD_ROOT/${PYNQ_BOARD}/petalinux_project/build/tmp/sysroots-components/*/zocl/lib $target/usr/
+# In PetaLinux 2025.2, kernel modules moved from zocl/lib to zocl/usr/lib
+sudo cp -rf $BUILD_ROOT/${PYNQ_BOARD}/petalinux_project/build/tmp/sysroots-components/*/zocl/lib $target/usr/ 2>/dev/null || true
